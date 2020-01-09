@@ -1,4 +1,4 @@
-package matrixes_vectors;
+package matricesVectors;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class Jacobian2D {
     private double[] yp;
 
     public Jacobian2D(List<Node> nodeList) {
-        List<UniversalElement> universalElementList = UniversalElement.UniversalElementList();
+        List<UniversalElement> universalElementList = UniversalElement.buildUniversalElementList();
         double[] x = new double[4];
         double[] y = new double[4];
         J = new double[4][4];

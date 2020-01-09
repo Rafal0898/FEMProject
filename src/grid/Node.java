@@ -6,14 +6,14 @@ public class Node {
     private double x;
     private double y;
     private double t;
-    private Boolean bC;
+    private Boolean bc;
 
-    public Node(double x, double y, double t, boolean bC) {
+    public Node(double x, double y, double t, boolean bc) {
         this.id = idCounter;
         this.x = x;
         this.y = y;
         this.t = t;
-        this.bC = bC;
+        this.bc = bc;
         idCounter++;
     }
 
@@ -25,7 +25,7 @@ public class Node {
         return y;
     }
 
-    public Boolean getbC() {
-        return bC;
+    public Boolean getBc() {
+        return bc;
     }
 }

@@ -1,4 +1,4 @@
-package matrixes_vectors;
+package matricesVectors;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class MatrixC {
 
         double[][] NForAllPoints = new double[4][4];
 
-        List<UniversalElement> universalElementList = UniversalElement.UniversalElementList();
+        List<UniversalElement> universalElementList = UniversalElement.buildUniversalElementList();
         double[][] J = jacobian2D.getJ();
         double[] detJ = jacobian2D.getDetJ();
 
@@ -24,7 +24,7 @@ public class MatrixC {
         }
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                double[][] NNT = MatrixVectorOperations.Matrix1DMultiplication(NForAllPoints[i], NForAllPoints[i], detJ);
+                double[][] NNT = MatricesVectors.multiply1dMatrices(NForAllPoints[i], NForAllPoints[i], detJ);
 
                 for (int l = 0; l < 4; l++) {
                     C[j][l] += cw * ro * NNT[j][l];

@@ -41,8 +41,13 @@ public class Grid {
         }
         this.elementList = elementList;
     }
+
     public int getElementListSize() {
         return elementList.size();
+    }
+
+    public int getNodeListSize() {
+        return nodeList.size();
     }
 
     public List<Element> getElementList() {

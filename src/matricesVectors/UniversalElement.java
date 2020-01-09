@@ -1,4 +1,4 @@
-package matrixes_vectors;
+package matricesVectors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class UniversalElement {
         dNdN[3] = 0.25 * (1 - ksi);
     }
 
-    public static List<UniversalElement> UniversalElementList() {
+    public static List<UniversalElement> buildUniversalElementList() {
         double ksi = 1 / sqrt(3);
         double eta = 1 / sqrt(3);
 
