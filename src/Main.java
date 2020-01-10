@@ -15,7 +15,7 @@ import matricesVectors.VectorP;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        String path = "C:\\Users\\Rafal\\Desktop\\Uczelnia\\Metody elementów skończonych\\program\\src\\TestCase2.txt";
+        String path = "C:\\Users\\Rafal\\Desktop\\Uczelnia\\Metody elementów skończonych\\program\\src\\TestCase1.txt";
         Scanner scanner = new Scanner(new File(path));
         double initialTemperature = Double.valueOf(scanner.nextLine());//100;//[°C] temperatura poczatkowa
         double simulationTime = Double.valueOf(scanner.nextLine());// 500;//[s]
@@ -89,9 +89,6 @@ public class Main {
             MatricesVectors.aggregateMatrix(globalMatrixC, localMatrixC, actualElementsNodeList);
 
             MatricesVectors.aggregateVector(globalVectorP, localVectorP, actualElementsNodeList);
-        }
-        for (int i = 0; i < grid.getNodeListSize(); i++) {
-            globalVectorP[i] *= alfa * ambientTemperature;
         }
         double[] T0 = new double[grid.getNodeListSize()];
         for (int i = 0; i < grid.getNodeListSize(); i++) {

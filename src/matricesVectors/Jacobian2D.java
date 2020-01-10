@@ -30,7 +30,6 @@ public class Jacobian2D {
 
         for (int i = 0; i < 4; i++) {
             UniversalElement tempUniversalElement = universalElementList.get(i);
-            double[] N = tempUniversalElement.getN();
             double[] dNdE = tempUniversalElement.getdNdE();
             double[] dNdN = tempUniversalElement.getdNdN();
             for (int j = 0; j < 4; j++) {

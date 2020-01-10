@@ -19,7 +19,7 @@ public class VectorP {
                 ksi *= (-1);
                 N2 = MatricesVectors.calculateMatrixN(ksi, eta);
                 for (int i = 0; i < 4; i++) {
-                    P[i] += (N[i] + N2[i]) * detJ[i];
+                    P[i] += alfa * ambientTemperature * (N[i] + N2[i]) * detJ[i];
                 }
                 break;
             }
@@ -31,7 +31,7 @@ public class VectorP {
                 eta *= (-1);
                 N2 = MatricesVectors.calculateMatrixN(ksi, eta);
                 for (int i = 0; i < 4; i++) {
-                    P[i] += (N[i] + N2[i]) * detJ[i];
+                    P[i] += alfa * ambientTemperature * (N[i] + N2[i]) * detJ[i];
                 }
                 break;
             }
@@ -43,7 +43,7 @@ public class VectorP {
                 ksi *= (-1);
                 N2 = MatricesVectors.calculateMatrixN(ksi, eta);
                 for (int i = 0; i < 4; i++) {
-                    P[i] += (N[i] + N2[i])* detJ[i];
+                    P[i] += alfa * ambientTemperature * (N[i] + N2[i]) * detJ[i];
                 }
                 break;
             }
@@ -55,7 +55,7 @@ public class VectorP {
                 eta *= (-1);
                 N2 = MatricesVectors.calculateMatrixN(ksi, eta);
                 for (int i = 0; i < 4; i++) {
-                    P[i] += (N[i] + N2[i]) * detJ[i];
+                    P[i] += alfa * ambientTemperature * (N[i] + N2[i]) * detJ[i];
                 }
             }
         }

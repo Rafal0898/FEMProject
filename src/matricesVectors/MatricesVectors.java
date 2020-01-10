@@ -23,12 +23,6 @@ public class MatricesVectors {
         return finalVector;
     }
 
-    public static double[] multiplyMatrixVector(double[][] matrix, double[] vector, int size) {
-        double[] finalVector = new double[size];
-
-        return finalVector;
-    }
-
     public static double[][] sumMatrices(double[][] matrix1, double[][] matrix2, double alfa) {
         double[][] finalMatrix = new double[4][4];
         for (int i = 0; i < 4; i++) {
@@ -41,7 +35,6 @@ public class MatricesVectors {
 
     public static void aggregateVector(double[] globalVector, double[] localVector, List<Node> elementsNodeList){
         int[] id = new int[4];
-        // TODO: 10.01.2020 AGREGACJA
         for (int i = 0; i < 4; i++) {
             id[i] = elementsNodeList.get(i).getId() - 1;
         }
@@ -81,7 +74,6 @@ public class MatricesVectors {
                 matrixCdT[i][j] = matrixC[i][j] / dT;
             }
         }
-//TODO:        //{P}= {P}+{[C]/dT}*{T0}   CHECK IF WORKS raczej nie
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 tempVector[i] += matrixCdT[i][j] * T0[j];
@@ -97,16 +89,6 @@ public class MatricesVectors {
         N[2] = 0.25 * (1 + ksi) * (1 + eta);
         N[3] = 0.25 * (1 - ksi) * (1 + eta);
         return N;
-    }
-
-    public double[][] transposeMatrix(double[][] matrix) {
-        double[][] transposedMatrix = new double[4][4];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                transposedMatrix[i][j] = matrix[j][i];
-            }
-        }
-        return transposedMatrix;
     }
 
     public static double[][] copyMatrix(double[][] matrix, int size) {
