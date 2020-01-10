@@ -1,5 +1,9 @@
 package matricesVectors;
 
+import java.util.List;
+
+import grid.Node;
+
 public class MatricesVectors {
     public static double[][] multiply1dMatrices(double[] matrix1, double[] matrix2, double[] detJ) {
         double[][] finalMatrix = new double[4][4];
@@ -35,8 +39,27 @@ public class MatricesVectors {
         return finalMatrix;
     }
 
-    public static void aggregateMatrix(double[][] globalMatrix, double[][] localMatrix){
+    public static void aggregateVector(double[] globalVector, double[] localVector, List<Node> elementsNodeList){
+        int[] id = new int[4];
+        // TODO: 10.01.2020 AGREGACJA
+        for (int i = 0; i < 4; i++) {
+            id[i] = elementsNodeList.get(i).getId() - 1;
+        }
+        for (int j = 0; j < 4; j++) {
+                globalVector[id[j]] += localVector[j];
+        }
+    }
 
+    public static void aggregateMatrix(double[][] globalMatrix, double[][] localMatrix, List<Node> elementsNodeList) {
+        int[] id = new int[4];
+        for (int i = 0; i < 4; i++) {
+            id[i] = elementsNodeList.get(i).getId() - 1;
+        }
+        for (int j = 0; j < 4; j++) {
+            for (int k = 0; k < 4; k++) {
+                globalMatrix[id[j]][id[k]] += localMatrix[j][k];
+            }
+        }
     }
 
     public static double[][] calculateGlobalMatrixH(double[][] matrixH, double[][] matrixC, double dT, int size) {
@@ -49,22 +72,22 @@ public class MatricesVectors {
         return finalMatrixH;
     }
 
-    public static double[] calculateGlobalVectorP(double[] vectorP, double[][] matrixC, double dT, double[] T0, int size) {
+    public static double[] calculateGlobalVectorPCdT(double[] vectorP, double[][] matrixC, double dT, double[] T0, int size) {
         double[] tempVector = new double[size];
+        double[] copyVectorP = copyVector(vectorP, size);
         double[][] matrixCdT = new double[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                matrixCdT[i][j] = matrixC[i][j] * dT;
+                matrixCdT[i][j] = matrixC[i][j] / dT;
             }
         }
-//TODO:        //{P}= {P}+{[C]/dT}*{T0}   CHECK IF WORKS
+//TODO:        //{P}= {P}+{[C]/dT}*{T0}   CHECK IF WORKS raczej nie
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 tempVector[i] += matrixCdT[i][j] * T0[j];
             }
         }
-        return sumVectors(vectorP, tempVector, size);
-
+        return sumVectors(copyVectorP, tempVector, size);
     }
 
     public static double[] calculateMatrixN(double ksi, double eta) {
@@ -86,6 +109,24 @@ public class MatricesVectors {
         return transposedMatrix;
     }
 
+    public static double[][] copyMatrix(double[][] matrix, int size) {
+        double[][] finalMatrix = new double[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                finalMatrix[i][j] = matrix[i][j];
+            }
+        }
+        return finalMatrix;
+    }
+
+    public static double[] copyVector(double[] vector, int size) {
+        double[] finalVector = new double[size];
+        for (int i = 0; i < size; i++) {
+            finalVector[i] = vector[i];
+        }
+        return finalVector;
+    }
+
     public static void showMatrix(double[][] matrix, int size) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -98,12 +139,19 @@ public class MatricesVectors {
         }
     }
 
+    public static void roundVector(double[] vector, int size) {
+        for (int i = 0; i < size; i++) {
+            vector[i] *= 100;
+            vector[i] = Math.round(vector[i]);
+            vector[i] /= 100;
+        }
+    }
+
     public static void showVector(double[] vector, int size) {
         for (int i = 0; i < size; i++) {
-            vector[i] *= 10000;
-            vector[i] = Math.round(vector[i]);
-            vector[i] /= 10000;
-            System.out.print(vector[i] + "\t");
+            roundVector(vector, size);
+            System.out.print(vector[i] + "  ");
         }
+        System.out.println();
     }
 }

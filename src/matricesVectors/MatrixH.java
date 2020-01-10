@@ -5,11 +5,9 @@ import java.util.List;
 import static java.lang.Math.sqrt;
 
 public class MatrixH {
-    private double[][] H;
+    private double[][] H = new double[4][4];
 
     public MatrixH(double k, Jacobian2D jacobian2D) {
-        H = new double[4][4];
-
         double[][] dNdx = new double[4][4];
         double[][] dNdy = new double[4][4];
 

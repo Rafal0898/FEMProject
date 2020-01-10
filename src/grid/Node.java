@@ -1,8 +1,8 @@
 package grid;
 
 public class Node {
-    static int idCounter = 1;
-    int id;
+    private static int idCounter = 1;
+    private int id;
     private double x;
     private double y;
     private double t;
@@ -15,6 +15,10 @@ public class Node {
         this.t = t;
         this.bc = bc;
         idCounter++;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public double getX() {

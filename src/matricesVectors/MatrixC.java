@@ -3,11 +3,9 @@ package matricesVectors;
 import java.util.List;
 
 public class MatrixC {
-    private double[][] C;
+    private double[][] C = new double[4][4];
 
     public MatrixC(double cw, double ro, Jacobian2D jacobian2D) {
-        C = new double[4][4];
-
         double[][] NForAllPoints = new double[4][4];
 
         List<UniversalElement> universalElementList = UniversalElement.buildUniversalElementList();

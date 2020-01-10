@@ -4,30 +4,22 @@ import static java.lang.Math.sqrt;
 
 public class VectorP {
 
-    double[] P;
+    private double[] P = new double[4];
 
-    public VectorP(double alfa, double ambientTemperature, Jacobian2D jacobian2D, double[][] matrixHbc, int whichSide, double w, double h) {
-        P = new double[4];
-        double[][] N;
-        double[][] N2;
-
+    public VectorP(double alfa, double ambientTemperature, int whichSide, double w, double h) {
+        double[] N;
+        double[] N2;
         switch (whichSide) {
             case 1: {
                 double[] detJ = {w / 2, w / 2, w / 2, w / 2};
                 double ksi = -1 / sqrt(3);
                 double eta = -1;
-                N = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
-                        MatricesVectors.calculateMatrixN(ksi, eta), detJ);
+                N = MatricesVectors.calculateMatrixN(ksi, eta);
 
                 ksi *= (-1);
-                N2 = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
-                        MatricesVectors.calculateMatrixN(ksi, eta), detJ);
-                N = MatricesVectors.sumMatrices(N, N2, alfa);
+                N2 = MatricesVectors.calculateMatrixN(ksi, eta);
                 for (int i = 0; i < 4; i++) {
-                    for (int j = 0; j < 4; j++) {
-                        // TODO: 07.01.2020  TAK JAK SWITCH W MATRIXH
-                        P[j] += N[i][j];
-                    }
+                    P[i] += (N[i] + N2[i]) * detJ[i];
                 }
                 break;
             }
@@ -35,17 +27,11 @@ public class VectorP {
                 double[] detJ = {h / 2, h / 2, h / 2, h / 2};
                 double ksi = 1;
                 double eta = -1 / sqrt(3);
-                N = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
-                        MatricesVectors.calculateMatrixN(ksi, eta), detJ);
+                N = MatricesVectors.calculateMatrixN(ksi, eta);
                 eta *= (-1);
-                N2 = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
-                        MatricesVectors.calculateMatrixN(ksi, eta), detJ);
-                N = MatricesVectors.sumMatrices(N, N2, alfa);
+                N2 = MatricesVectors.calculateMatrixN(ksi, eta);
                 for (int i = 0; i < 4; i++) {
-                    for (int j = 0; j < 4; j++) {
-                        // TODO: 07.01.2020  TAK JAK SWITCH W MATRIXH
-                        P[j] += N[i][j];
-                    }
+                    P[i] += (N[i] + N2[i]) * detJ[i];
                 }
                 break;
             }
@@ -53,17 +39,11 @@ public class VectorP {
                 double[] detJ = {w / 2, w / 2, w / 2, w / 2};
                 double ksi = 1 / sqrt(3);
                 double eta = 1;
-                N = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
-                        MatricesVectors.calculateMatrixN(ksi, eta), detJ);
+                N = MatricesVectors.calculateMatrixN(ksi, eta);
                 ksi *= (-1);
-                N2 = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
-                        MatricesVectors.calculateMatrixN(ksi, eta), detJ);
-                N = MatricesVectors.sumMatrices(N, N2, alfa);
+                N2 = MatricesVectors.calculateMatrixN(ksi, eta);
                 for (int i = 0; i < 4; i++) {
-                    for (int j = 0; j < 4; j++) {
-                        // TODO: 07.01.2020  TAK JAK SWITCH W MATRIXH
-                        P[j] += N[i][j];
-                    }
+                    P[i] += (N[i] + N2[i])* detJ[i];
                 }
                 break;
             }
@@ -71,39 +51,12 @@ public class VectorP {
                 double[] detJ = {h / 2, h / 2, h / 2, h / 2};
                 double ksi = -1;
                 double eta = 1 / sqrt(3);
-                N = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
-                        MatricesVectors.calculateMatrixN(ksi, eta), detJ);
+                N = MatricesVectors.calculateMatrixN(ksi, eta);
                 eta *= (-1);
-                N2 = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
-                        MatricesVectors.calculateMatrixN(ksi, eta), detJ);
-                N = MatricesVectors.sumMatrices(N, N2, alfa);
+                N2 = MatricesVectors.calculateMatrixN(ksi, eta);
                 for (int i = 0; i < 4; i++) {
-                    for (int j = 0; j < 4; j++) {
-                        // TODO: 07.01.2020  TAK JAK SWITCH W MATRIXH
-                        P[j] += N[i][j];
-                    }
+                    P[i] += (N[i] + N2[i]) * detJ[i];
                 }
-            }
-
-//            List<UniversalElement> universalElementList = UniversalElement.buildUniversalElementList();
-
-//            for (int i = 0; i < 4; i++) {
-////                UniversalElement tempUniversalElement = universalElementList.get(i);
-////                double[] N = tempUniversalElement.getN();
-//
-//                double[] Ntest = new double[4];
-//                for (int j = 0; j < 4; j++) {
-//                    Ntest[j] = matrixHbc[i][j];
-//                }
-//
-//                for (int j = 0; j < 4; j++) {
-//                    // TODO: 07.01.2020  TAK JAK SWITCH W MATRIXH
-//                    P[j] += N[i][j];
-//                }
-//            }
-
-            for (int i = 0; i < 4; i++) {
-                P[i] *= alfa * ambientTemperature * jacobian2D.getDetJ()[i];
             }
         }
     }

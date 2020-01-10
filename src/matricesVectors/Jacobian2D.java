@@ -5,18 +5,15 @@ import java.util.List;
 import grid.Node;
 
 public class Jacobian2D {
-    private double[][] J;
+    private double[][] J = new double[4][4];
     private double[] detJ;
-    private double[] xp;
-    private double[] yp;
+    private double[] xp = new double[4];
+    private double[] yp = new double[4];
 
     public Jacobian2D(List<Node> nodeList) {
         List<UniversalElement> universalElementList = UniversalElement.buildUniversalElementList();
         double[] x = new double[4];
         double[] y = new double[4];
-        J = new double[4][4];
-        xp = new double[4];
-        yp = new double[4];
 
         for(int i=0;i<4;i++){
             x[i] = nodeList.get(i).getX();
