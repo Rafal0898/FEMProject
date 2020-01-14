@@ -15,7 +15,7 @@ import matricesVectors.VectorP;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        String path = "C:\\Users\\Rafal\\Desktop\\Uczelnia\\Metody elementów skończonych\\program\\src\\TestCase1.txt";
+        String path = "C:\\Users\\Rafal\\Desktop\\Uczelnia\\Metody elementów skończonych\\program\\src\\TestCase2.txt";
         Scanner scanner = new Scanner(new File(path));
         double initialTemperature = Double.valueOf(scanner.nextLine());//100;//[°C] temperatura poczatkowa
         double simulationTime = Double.valueOf(scanner.nextLine());// 500;//[s]
@@ -51,30 +51,30 @@ public class Main {
             if (actualElementsNodeList.get(0).getBc() && actualElementsNodeList.get(1).getBc()) {//jezeli 1 i 2 ma BC
                 whichSide = 1;
                 localMatrixHbc = MatricesVectors.sumMatrices(localMatrixHbc,
-                        MatrixH.calculateMatrixHbc(whichSide, alfa, h / (nH - 1), w / (nW - 1)), 1);
+                        MatrixH.calculateMatrixHbc(whichSide, alfa, actualElementsNodeList.get(0), actualElementsNodeList.get(1)), 1);
                 localVectorP = MatricesVectors.sumVectors(localVectorP,
-                        new VectorP(alfa, ambientTemperature, whichSide, h / (nH - 1), w / (nW - 1)).getP(), 4);
+                        new VectorP(whichSide, actualElementsNodeList.get(0), actualElementsNodeList.get(1)).getP(), 4);
             }
             if (actualElementsNodeList.get(1).getBc() && actualElementsNodeList.get(2).getBc()) {//jezeli 2 i 3 ma BC
                 whichSide = 2;
                 localMatrixHbc = MatricesVectors.sumMatrices(localMatrixHbc,
-                        MatrixH.calculateMatrixHbc(whichSide, alfa, h / (nH - 1), w / (nW - 1)), 1);
+                        MatrixH.calculateMatrixHbc(whichSide, alfa, actualElementsNodeList.get(1), actualElementsNodeList.get(2)), 1);
                 localVectorP = MatricesVectors.sumVectors(localVectorP,
-                        new VectorP(alfa, ambientTemperature, whichSide, h / (nH - 1), w / (nW - 1)).getP(), 4);
+                        new VectorP(whichSide, actualElementsNodeList.get(1), actualElementsNodeList.get(2)).getP(), 4);
             }
             if (actualElementsNodeList.get(2).getBc() && actualElementsNodeList.get(3).getBc()) {//jezeli 3 i 4 maja BC
                 whichSide = 3;
                 localMatrixHbc = MatricesVectors.sumMatrices(localMatrixHbc,
-                        MatrixH.calculateMatrixHbc(whichSide, alfa, h / (nH - 1), w / (nW - 1)), 1);
+                        MatrixH.calculateMatrixHbc(whichSide, alfa, actualElementsNodeList.get(2), actualElementsNodeList.get(3)), 1);
                 localVectorP = MatricesVectors.sumVectors(localVectorP,
-                        new VectorP(alfa, ambientTemperature, whichSide, h / (nH - 1), w / (nW - 1)).getP(), 4);
+                        new VectorP(whichSide, actualElementsNodeList.get(2), actualElementsNodeList.get(3)).getP(), 4);
             }
             if (actualElementsNodeList.get(0).getBc() && actualElementsNodeList.get(3).getBc()) {//jezeli 1 i 4 ma BC
                 whichSide = 4;
                 localMatrixHbc = MatricesVectors.sumMatrices(localMatrixHbc,
-                        MatrixH.calculateMatrixHbc(whichSide, alfa, h / (nH - 1), w / (nW - 1)), 1);
+                        MatrixH.calculateMatrixHbc(whichSide, alfa, actualElementsNodeList.get(0), actualElementsNodeList.get(3)), 1);
                 localVectorP = MatricesVectors.sumVectors(localVectorP,
-                        new VectorP(alfa, ambientTemperature, whichSide, h / (nH - 1), w / (nW - 1)).getP(), 4);
+                        new VectorP(whichSide, actualElementsNodeList.get(0), actualElementsNodeList.get(3)).getP(), 4);
             }
 
             MatrixH matrixH = new MatrixH(k, jacobian2D);
@@ -90,9 +90,11 @@ public class Main {
 
             MatricesVectors.aggregateVector(globalVectorP, localVectorP, actualElementsNodeList);
         }
+
         double[] T0 = new double[grid.getNodeListSize()];
         for (int i = 0; i < grid.getNodeListSize(); i++) {
             T0[i] = initialTemperature;
+            globalVectorP[i] *= alfa * ambientTemperature;
         }
         if (grid.getNodeListSize() <= 25) { //DONT PRINT TOO BIG MATRICES
             System.out.println("________________ Interaction 0 ______________");
@@ -111,7 +113,7 @@ public class Main {
         double[] tMin = new double[(int) (simulationTime / dT)];
         int interaction = 0;
 
-        for (int i = (int) dT; i <= simulationTime; i += dT) {
+        for (int i = 0; i < (int) simulationTime / dT; i++) {
             double[] globalVectorPCdT = MatricesVectors.calculateGlobalVectorPCdT(globalVectorP, globalMatrixC, dT, T0, grid.getNodeListSize());
 
             if (grid.getNodeListSize() <= 25) { //DONT PRINT TOO BIG MATRICES
@@ -140,13 +142,11 @@ public class Main {
             T0 = t;
         }
 
-        int j = 0;
         MatricesVectors.roundVector(tMin, (int) (simulationTime / dT));
         MatricesVectors.roundVector(tMax, (int) (simulationTime / dT));
         System.out.println("Time[s] \t\t MinTemp[°C] \t\t MaxTemp[°C]");
-        for (int i = (int) dT; i <= simulationTime; i += dT) {
-            System.out.println(i + "\t\t\t\t\t" + tMin[j] + "\t\t\t\t" + tMax[j]);
-            j++;
+        for (int i = 0; i < (int) simulationTime / dT; i++) {
+            System.out.println((i + 1) * dT + "\t\t\t\t\t" + tMin[i] + "\t\t\t\t" + tMax[i]);
         }
     }
 }

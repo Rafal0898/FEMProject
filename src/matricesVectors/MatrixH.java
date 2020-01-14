@@ -2,6 +2,9 @@ package matricesVectors;
 
 import java.util.List;
 
+import grid.Node;
+
+import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 public class MatrixH {
@@ -38,14 +41,22 @@ public class MatrixH {
         }
     }
 
-    public static double[][] calculateMatrixHbc(int whichSide, double alfa, double h, double w) {
+    public static double[][] calculateMatrixHbc(int whichSide, double alfa, Node node1, Node node2) {
         double[][] matrixH = new double[4][4];
         double[][] N;
         double[][] N2;
+        double x1 = node1.getX();
+        double y1 = node1.getY();
+        double x2 = node2.getX();
+        double y2 = node2.getY();
+        double[] detJ = new double[4];
+        //Function multiple1dMatrices requires double[] as last argument
+        for (int i = 0; i < 4; i++) {
+            detJ[i] = (sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2))) / 2;
+        }
 
         switch (whichSide) {
             case 1: {
-                double[] detJ = {w / 2, w / 2, w / 2, w / 2};
                 double ksi = -1 / sqrt(3);
                 double eta = -1;
                 N = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
@@ -58,7 +69,6 @@ public class MatrixH {
                 break;
             }
             case 2: {
-                double[] detJ = {h / 2, h / 2, h / 2, h / 2};
                 double ksi = 1;
                 double eta = -1 / sqrt(3);
                 N = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
@@ -71,7 +81,6 @@ public class MatrixH {
                 break;
             }
             case 3: {
-                double[] detJ = {w / 2, w / 2, w / 2, w / 2};
                 double ksi = 1 / sqrt(3);
                 double eta = 1;
                 N = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
@@ -84,7 +93,6 @@ public class MatrixH {
                 break;
             }
             case 4: {
-                double[] detJ = {h / 2, h / 2, h / 2, h / 2};
                 double ksi = -1;
                 double eta = 1 / sqrt(3);
                 N = MatricesVectors.multiply1dMatrices(MatricesVectors.calculateMatrixN(ksi, eta),
