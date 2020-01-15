@@ -14,8 +14,7 @@ import matricesVectors.VectorP;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        long time1 = System.currentTimeMillis();
-        String path = System.getProperty("user.dir").toString() + "\\src\\TestCase2.txt";
+        String path = System.getProperty("user.dir").toString() + "\\src\\TestCase1.txt";
         Scanner scanner = new Scanner(new File(path));
         double initialTemperature = Double.valueOf(scanner.nextLine());//100;//[°C] temperatura poczatkowa
         double simulationTime = Double.valueOf(scanner.nextLine());// 500;//[s]
@@ -146,6 +145,5 @@ public class Main {
         for (int i = 0; i < (int) simulationTime / dT; i++) {
             System.out.println((i + 1) * dT + "\t\t\t\t\t" + tMin[i] + "\t\t\t\t" + tMax[i]);
         }
-        System.out.println(System.currentTimeMillis() - time1);
     }
 }

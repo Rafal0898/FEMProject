@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8ecd3823-5619-43e3-8f0c-2a4dfcee7df8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MES_program/META-INF/MES_program.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MES_program/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MES_program/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grid/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/Element.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grid/GlobalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/GlobalData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/matricesVectors/Jacobian2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/matricesVectors/Jacobian2D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/matricesVectors/MatrixC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/matricesVectors/MatrixC.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+            <state relative-caret-position="80">
+              <caret line="16" column="83" selection-start-line="16" selection-start-column="83" selection-end-line="16" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -99,12 +93,12 @@
         <option value="$PROJECT_DIR$/src/grid/Node.java" />
         <option value="$PROJECT_DIR$/src/matricesVectors/VectorP.java" />
         <option value="$PROJECT_DIR$/src/matricesVectors/MatrixH.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/matricesVectors/MatricesVectors.java" />
         <option value="$PROJECT_DIR$/src/grid/Element.java" />
         <option value="$PROJECT_DIR$/src/grid/GlobalData.java" />
         <option value="$PROJECT_DIR$/src/matricesVectors/Jacobian2D.java" />
         <option value="$PROJECT_DIR$/src/matricesVectors/MatrixC.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -215,7 +209,7 @@
     <frame x="1359" y="-7" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13355705" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13355705" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -224,12 +218,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.22067039" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18156424" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.74581003" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.30273753" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.23882681" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.17597765" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3289689" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32850242" />
@@ -390,8 +384,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+        <state relative-caret-position="80">
+          <caret line="16" column="83" selection-start-line="16" selection-start-column="83" selection-end-line="16" selection-end-column="83" />
         </state>
       </provider>
     </entry>
