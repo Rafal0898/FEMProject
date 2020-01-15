@@ -9,7 +9,6 @@ public class MatrixC {
         double[][] NForAllPoints = new double[4][4];
 
         List<UniversalElement> universalElementList = UniversalElement.buildUniversalElementList();
-        double[][] J = jacobian2D.getJ();
         double[] detJ = jacobian2D.getDetJ();
 
         for (int i = 0; i < 4; i++) {

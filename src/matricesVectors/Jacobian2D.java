@@ -7,8 +7,6 @@ import grid.Node;
 public class Jacobian2D {
     private double[][] J = new double[4][4];
     private double[] detJ;
-    private double[] xp = new double[4];
-    private double[] yp = new double[4];
 
     public Jacobian2D(List<Node> nodeList) {
         List<UniversalElement> universalElementList = UniversalElement.buildUniversalElementList();
@@ -18,14 +16,6 @@ public class Jacobian2D {
         for(int i=0;i<4;i++){
             x[i] = nodeList.get(i).getX();
             y[i] = nodeList.get(i).getY();
-        }
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                UniversalElement tempUniversalElement = universalElementList.get(i);
-                double[] N = tempUniversalElement.getN();
-                xp[i] += x[j] * N[j];
-                yp[i] += y[j] * N[j];
-            }
         }
 
         for (int i = 0; i < 4; i++) {
@@ -39,6 +29,7 @@ public class Jacobian2D {
                 J[3][i] += y[j] * dNdN[j];
             }
         }
+
         detJ = new double[4];
         for (int i = 0; i < 4; i++) {
             detJ[i] = J[0][i] * J[3][i] - J[1][i] * J[2][i];

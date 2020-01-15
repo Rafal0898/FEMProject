@@ -16,8 +16,4 @@ public class Element {
     public List<Node> getNodeList() {
         return nodeList;
     }
-
-    public int getId() {
-        return id;
-    }
 }

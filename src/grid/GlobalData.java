@@ -28,10 +28,6 @@ public class GlobalData {
         return nW;
     }
 
-    public int getnN() {
-        return nN;
-    }
-
     public int getnE() {
         return nE;
     }

@@ -10,12 +10,12 @@ import matricesVectors.Jacobian2D;
 import matricesVectors.MatricesVectors;
 import matricesVectors.MatrixC;
 import matricesVectors.MatrixH;
-import matricesVectors.UniversalElement;
 import matricesVectors.VectorP;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        String path = "C:\\Users\\Rafal\\Desktop\\Uczelnia\\Metody elementów skończonych\\program\\src\\TestCase2.txt";
+        long time1 = System.currentTimeMillis();
+        String path = System.getProperty("user.dir").toString() + "\\src\\TestCase2.txt";
         Scanner scanner = new Scanner(new File(path));
         double initialTemperature = Double.valueOf(scanner.nextLine());//100;//[°C] temperatura poczatkowa
         double simulationTime = Double.valueOf(scanner.nextLine());// 500;//[s]
@@ -32,8 +32,6 @@ public class Main {
 
         GlobalData globalData = new GlobalData(h, w, nH, nW);
         Grid grid = new Grid(globalData);
-
-        List<UniversalElement> universalElementList = UniversalElement.buildUniversalElementList();
 
         double[][] globalMatrixH = new double[grid.getNodeListSize()][grid.getNodeListSize()];
         double[][] globalMatrixHCdT = new double[grid.getNodeListSize()][grid.getNodeListSize()];
@@ -148,5 +146,6 @@ public class Main {
         for (int i = 0; i < (int) simulationTime / dT; i++) {
             System.out.println((i + 1) * dT + "\t\t\t\t\t" + tMin[i] + "\t\t\t\t" + tMax[i]);
         }
+        System.out.println(System.currentTimeMillis() - time1);
     }
 }
